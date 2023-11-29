@@ -3,19 +3,18 @@ const bodyParser = require('body-parser');
 const admin = require('firebase-admin');
 
 // Initialize Firebase Admin SDK
-const serviceAccount = require('https://storage.cloud.google.com/lms-testing-bangkit/serviceAccountKey.json'); // Replace with your own service account key
+const serviceAccount = require('./serviceAccountKey.json'); // Replace with your own service account key
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: 'https://tes-bangkit-capstone.firebaseio.com/', // Replace with your Firestore database URL
 });
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 // Middleware
 app.use(bodyParser.json());
 
-const Course = mongoose.model('Course', courseSchema);
 
 // Routes
 app.get('/courses', async (req, res) => {
